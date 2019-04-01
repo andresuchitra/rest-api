@@ -8,6 +8,10 @@ app.use(express.json())
 
 app.use('/api/users', UserRoute)
 
+app.get('/', (req,res) => {
+    res.json("Main Page")
+})
+
 app.listen(PORT, (req, res) => {
     console.log(`STARTING PORT ${PORT}`);
 })
