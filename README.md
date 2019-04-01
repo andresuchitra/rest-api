@@ -1,4 +1,4 @@
-# REST API Documentation - User
+# Application Documentation - User
 
 ## User App
 
@@ -14,9 +14,23 @@ Route  | HTTP | Header(s) |   Body   | Description | Output |
 
 Route  | HTTP | Header(s) |   Body   | Description | Output |
 -------|------|-------|-------------|--------|--------|
-`/api/users`  | `GET` | none | none | Get all users info | array of User objects |
-`/api/users/:id` | `GET` | none | none | Get single user info | a User object |
-`/api/users`  | `POST` | none | username:String (**required**), password:String (**required**), age:integer (**optional**) | Create a user | User object that has been inserted in DB |
-`/api/users/:id`  | `DELETE` | none | none | Delete a user | ID of the deleted user |
-`/api/users/:id`  | `PUT` | none | username:String (**required**), password:String (**required**), age:integer (**optional**)  | Update a user. All attributes **must** be provided | ID of the updated user |
-`/api/users/:id`  | `PATCH` | none | any one of following attributes: <ul><li>username:String</li><li>password:String</li><li>age:Integer</li></ul> | Update a user's specific attribute | | ID of the updated user |
+`/api/signup`  | `POST` | none | username:String (**required**), password:String (**required**), email:String (**required**), role:String (**required**) | Create new account | created user object |
+`/api/signin`  | `POST` | none | username:String (**required**), password:String (**required**)| Signing in using username & password | JWT token|
+`/api/users`  | `GET` | token | none | Get all users info (ADMIN ONLY) | array of User objects |
+`/api/users/:id` | `GET` | token | none | Get single user info (ADMIN & authenticated user) | User object |
+`/api/users`  | `POST` | token | username:String (**required**), password:String (**required**), role:String (**required**) | Create a user (ADMIN ONLY) | User object that has been inserted in DB |
+`/api/users/:id`  | `DELETE` | token | none | Delete a user (ADMIN ONLY) | ID of the deleted user |
+`/api/users/:id`  | `PUT` | token | username:String (**required**), password:String (**required**), name:String (**required**), email:String (**required**) | Update a user. All attributes **must** be provided. (`role` update is allowed for Admin only) | ID of the updated user |
+`/api/users/:id`  | `PATCH` | token | any one of following attributes: <ul><li>username:String</li><li>password:String</li><li>name:String</li><li>email:String</li><li>role:String --> only for Admin</li></ul> | Update a user's specific attribute (`role` update is allowed for Admin only) | | ID of the updated user |
+
+
+
+
+To run the program, run the following commands:
+```bash
+$ npm install
+$ npm start
+$ npm run dev
+```
+
+Access the API via 

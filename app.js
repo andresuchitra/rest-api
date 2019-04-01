@@ -1,12 +1,14 @@
+require('dotenv').config()
 const express = require('express')
 const app = express()
-const UserRoute = require('./routes/users')
-const PORT = 3000
+const ApiRoute = require('./routes/api')
+const PORT = process.env.PORT || 3000
 
 app.use(express.urlencoded({extended: false}))
 app.use(express.json())
 
-app.use('/api/users', UserRoute)
+//top level api route (/users, /signin, /signup will defined there)
+app.use('/api', ApiRoute)
 
 app.get('/', (req,res) => {
     res.json("Main Page")
