@@ -30,7 +30,6 @@ To run the program, run the following commands:
 ```bash
 $ npm install
 $ npm start
-$ npm run dev
 ```
 
-Access the API via 
+Access the API via `https://andresuch-restapi.herokuapp.com/api`
